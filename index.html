@@ -621,14 +621,15 @@ body.intro-lock{overflow:hidden}
   <div class="intro-terminal">
     <div id="intro1" class="intro-line">&gt; IDENTITÉ DE LA VICTIME: ANGÉLINA RIBEIRO<span class="intro-cursor"></span></div>
     <div id="intro2" class="intro-line ok">&nbsp&nbsp&gt; IDENTITÉ CONFIRMÉE ✓✓</div>
-    <div id="intro3" class="intro-line">&gt; CONNEXION À LA BANQUE EN LIGNE  ✓✓</div>
+    <div id="intro3" class="intro-line">&gt; CONNEXION À LA BANQUE EN LIGNE COMPTE FR76XXX... ✓✓</div>
     <div id="intro4" class="intro-line ok">&nbsp&nbsp&gt; CONNEXION ÉTABLIE…</div>	
     <div id="intro5" class="intro-line SOLDE">&nbsp&nbsp&gt; SOLDE -129,37€ &gt; COMPTE DÉJÀ VIDÉ AU JAPON</div>
     <div id="intro6" class="intro-line">&gt; ACTIONS RECOMMANDÉES : </div>
     <div id="intro7" class="intro-line joke">&nbsp&nbsp&gt;NE RIEN VOLER</div>
     <div id="intro8" class="intro-line joke">&nbsp&nbsp&gt;PLUTÔT L’AIDER À REMONTER LA PENTE</div>
     <div id="intro9" class="intro-line joke">&nbsp&nbsp&gt;LUI PROPOSER UN JEU/QUIZ POUR GAGNER UN CADEAU</div>
-
+    <div id="intro10" class="intro-line">&gt; CONSTRCUTION DU QUIZ ✓ </div>
+    <div id="intro11" class="intro-line">&gt; REDIRECTION EN COURS...<span class="intro-cursor"></span> </div>
   </div>
 </div>
 
@@ -727,7 +728,7 @@ body.intro-lock{overflow:hidden}
 ========================= */
 (function(){
   const intro = document.getElementById("introSequence");
-  const lines = [1,2,3,4,5,6,7,8,9,10].map(n => document.getElementById("intro"+n));
+  const lines = [1,2,3,4,5,6,7,8,9,10,11].map(n => document.getElementById("intro"+n));
 
   // Même animation que la version Amen, avec 1,5 s entre les lignes.
   lines.forEach((line, i) => {
