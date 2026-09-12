@@ -555,11 +555,77 @@
       }
     }
 
+  
+/* =========================
+   SÉQUENCE D'OUVERTURE
+========================= */
+#introSequence{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#050505;
+  color:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:1;
+  visibility:visible;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+#introSequence.done{
+  opacity:0;
+  visibility:hidden;
+}
+.intro-terminal{
+  width:min(720px,100%);
+  font-family:"Courier New",monospace;
+  font-size:clamp(14px,2.4vw,19px);
+  line-height:1.9;
+}
+.intro-line{
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .55s ease, transform .55s ease;
+}
+.intro-line.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.intro-line.ok{color:#b8e6c1}
+.intro-line.joke{color:#e4bd70;font-weight:700}
+.intro-cursor{
+  display:inline-block;
+  width:9px;
+  height:1em;
+  margin-left:3px;
+  vertical-align:-2px;
+  background:#ddd;
+  animation:introBlink .8s infinite;
+}
+@keyframes introBlink{50%{opacity:0}}
+body.intro-lock{overflow:hidden}
+
   </style>
 </head>
 
 
-<body>
+<body class="intro-lock">
+
+
+<!-- =========================
+     SÉQUENCE D'OUVERTURE
+========================= -->
+<div id="introSequence" aria-live="polite">
+  <div class="intro-terminal">
+    <div id="intro1" class="intro-line">&gt; CONNEXION ÉTABLIE…<span class="intro-cursor"></span></div>
+    <div id="intro2" class="intro-line">&gt; DESTINATAIRE : ANGÉLINA RIBEIRO</div>
+    <div id="intro3" class="intro-line">&gt; EXPÉDITEUR : Abdelheq BELGROUM</div>
+    <div id="intro4" class="intro-line ok">&gt; IDENTITÉ CONFIRMÉE ✓✓</div>
+    <div id="intro5" class="intro-line joke">&gt; NIVEAU DE CONFIDENTIALITÉ : ABSOLUMENT PAS SECRET 😂</div>
+  </div>
+</div>
+
 
   <div class="card">
 
@@ -648,6 +714,31 @@
 
 
   <script>
+
+/* =========================
+   SÉQUENCE D'OUVERTURE
+   Puis affichage de la page existante
+========================= */
+(function(){
+  const intro = document.getElementById("introSequence");
+  const lines = [1,2,3,4,5].map(n => document.getElementById("intro"+n));
+
+  // Même animation que la version Amen, avec 1,5 s entre les lignes.
+  lines.forEach((line, i) => {
+    setTimeout(() => line.classList.add("show"), 700 + i * 1500);
+  });
+
+  // Une fois la séquence terminée, on révèle la page originale.
+  setTimeout(() => {
+    intro.classList.add("done");
+    document.body.classList.remove("intro-lock");
+
+    // Retire complètement l'écran noir après son fondu.
+    setTimeout(() => intro.remove(), 1100);
+  }, 700 + lines.length * 1500 + 1500);
+})();
+
+
 
 
     // ==========================================================
