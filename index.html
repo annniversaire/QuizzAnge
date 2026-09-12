@@ -732,7 +732,7 @@ body.intro-lock{overflow:hidden}
 
   // Même animation que la version Amen, avec 1,5 s entre les lignes.
   lines.forEach((line, i) => {
-    setTimeout(() => line.classList.add("show"), 700 + i * 1500);
+    setTimeout(() => line.classList.add("show"), 700 + i * 1600);
   });
 
   // Une fois la séquence terminée, on révèle la page originale.
@@ -742,7 +742,7 @@ body.intro-lock{overflow:hidden}
 
     // Retire complètement l'écran noir après son fondu.
     setTimeout(() => intro.remove(), 1100);
-  }, 700 + lines.length * 1300 + 1300);
+  }, 700 + lines.length * 1600 + 1600);
 })();
 
 
