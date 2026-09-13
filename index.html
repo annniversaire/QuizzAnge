@@ -717,7 +717,9 @@ body.intro-lock{overflow:hidden}
   ========================= -->
   <audio id="musicYes" src="musique-yes.mp3" preload="auto"></audio>
   <audio id="musicNo" src="musique-no.mp3" preload="auto"></audio>
-
+  <audio id="quizCorrect" src="quiz-correct.mp3" preload="auto"></audio>
+  <audio id="quizWrong" src="quiz-wrong.mp3" preload="auto"></audio>
+	
 <div id="introSequence" aria-live="polite">
   <div class="intro-terminal">
     <div id="intro1" class="intro-line">&gt; IDENTITÉ DE LA VICTIME: ANGÉLINA RIBEIRO</div>
@@ -1194,32 +1196,37 @@ body.intro-lock{overflow:hidden}
             Bonne réponse
           */
 
-          if(
-            h === correctHash
-          ){
+if(h === correctHash){
 
-              window.location.href = "https://annniversaire.github.io/Angelina/";
+  const musicCorrect =
+    document.getElementById("quizCorrect");
 
+  musicCorrect.currentTime = 0;
+  musicCorrect.play().catch(() => {});
 
-          }
+  resultEl.textContent = 'Bonne réponse ! 🎉';
+  resultEl.className = 'result good';
 
+  setTimeout(() => {
+    window.location.href =
+      "https://annniversaire.github.io/Angelina/";
+  }, 3000);
 
-          /*
-            Mauvaise réponse
-          */
-
+}
 else{
 
+  const musicWrong =
+    document.getElementById("quizWrong");
+
+  musicWrong.currentTime = 0;
+  musicWrong.play().catch(() => {});
+
   resultEl.textContent =
-    'Mauvaise réponse , shame on you 😡😡😡';
+    'Mauvaise réponse, shame on you 😡😡😡';
 
-  resultEl.className =
-    'result bad';
+  resultEl.className = 'result bad';
 
-  // Efface la saisie
   inputEl.value = '';
-
-  // Replace le curseur dans le champ
   inputEl.focus();
 }
 
